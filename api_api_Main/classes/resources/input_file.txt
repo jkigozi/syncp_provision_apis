@@ -1,0 +1,10 @@
+firstaa_lastaa@apidev.com:firstaa:lastaa:passa1:LimitedBusiness:Group_Main|Group_Next|Group_Many
+firstbb_lastbb@apidev.com:firstbb:lastbb:passb2:LimitedBusiness:Group_Real|Group_Main
+firstcc_lastcc@apidev.com:firstcc:lastcc:passb3:LimitedBusiness:Group_Many|Group_Next
+firstdd_lastdd@apidev.com:firstdd:lastdd:passb4:LimitedBusiness:Group_Many|Group_Real
+firstee_lastee@apidev.com:firstee:lastee:passb5:LimitedBusiness:Group_Main|Group_Next
+firstff_lastff@apidev.com:firstgg:lastdd:passb6:LimitedBusiness:Group_Many|Group_Real
+firstgg_lastgg@apidev.com:firstgg:lastee:passb7:LimitedBusiness:Group_Real|Group_Next
+firsthh_lasthh@apidev.com:firsthh:lasthh:passb8:LimitedBusiness:Group_Main|Group_Many
+firstii_lastii@apidev.com:firstii:lastii:passb9:LimitedBusiness:Group_Main|Group_Real
+firstjj_lastjj@apidev.com:firstjj:lastjj:passb10:LimitedBusiness:Group_Main|Group_Many|Group_Real|Group_Next|

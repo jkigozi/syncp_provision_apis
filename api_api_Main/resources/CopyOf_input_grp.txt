@@ -1,0 +1,4 @@
+Group_Main:syncplicity-api-training-06-apidev@dispostable.com
+Group_Real:syncplicity-api-training-06-apidev@dispostable.com
+Group_Next:syncplicity-api-training-06-apidev@dispostable.com
+Group_Many:syncplicity-api-training-06-apidev@dispostable.com

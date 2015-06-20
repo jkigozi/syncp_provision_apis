@@ -1,0 +1,7 @@
+
+Active Directory Event IDs of Interest
+Windows	5136	-	A directory service object was modified
+Windows	5137	-	A directory service object was created
+Windows	5138	-	A directory service object was undeleted
+Windows	5139	-	A directory service object was moved
+Windows	5141	-	A directory service object was deleted

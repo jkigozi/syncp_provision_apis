@@ -1,0 +1,5 @@
+org.jinterop.dcom.common
+org.jinterop.dcom.core
+org.jinterop.dcom.impls
+org.jinterop.dcom.impls.automation
+org.jinterop.winreg
