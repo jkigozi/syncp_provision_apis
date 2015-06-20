@@ -12,11 +12,11 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import oauth.OAuth;
+import provisioners.APIHomeWork_AD;
+import provisioners.APIHomeWork_F;
 import util.APIContext;
-import examples.APIHomeWork_AD;
-import examples.APIHomeWork_F;
 
-public class SampleApp
+public class LaunchProvisioner
 {
   static
   {

@@ -1,4 +1,4 @@
-package examples;
+package provisioners;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import entities.UserAccountType;
 
 
 
-public class CopyOfAPIHomeWork_AD {
+public class APIHomeWork_AD {
 		//Array to track all users as they are created
 	private static User[] createdUsers;
 	
@@ -52,18 +52,18 @@ public class CopyOfAPIHomeWork_AD {
 	private static Group[] cloudGroups;
 	
 	//private static String url = ConfigurationHelper.getLdapUrl();
-	private static String url = "LDAP://137.69.206.203:389";
+	private static String url = "LDAP://win2k8-R2.johnk.local:389";
 	//private static String usr = ConfigurationHelper.getAdminCn();
-	private static String usr = "CN=Administrator,CN=Users,DC=support12r2,DC=com";
+	private static String usr = "CN=Administrator,CN=Users,DC=johnk,DC=local";
 	//private static String pas = ConfigurationHelper.getAdminPass();
-	private static String pas = "Admin1234";
+	private static String pas = "Francisco!2";
 	//private static String search_fltr = ConfigurationHelper.all_search_filters();
 	//private static String search_fltr = "(&(objectClass=user)(memberOf=CN=apidev,CN=Users,DC=johnk,DC=local)(mail=*))";
 	//private static String search_fltr = "(objectClass=group)";
 
 	//private static String search_base = ConfigurationHelper.all_search_bases();
 	//private static String search_base = "CN=Support,OU=SyncplicityUsers,DC=support12r2,DC=com";
-	private static String search_base = "OU=SyncplicityUsers,DC=support12r2,DC=com";
+	private static String search_base = "OU=Izogeek,DC=johnk,DC=local";
 	//private static String search_base = "CN=Users,DC=johnk,DC=local";
  
 	public static void execute() {
@@ -125,7 +125,7 @@ public class CopyOfAPIHomeWork_AD {
 			{
 			
 				System.out.println("");
-				
+					
 				System.out.println(String.format("Removing user[%s] from group [%s].", new Object[] {
 						entry.getKey(), entry.getValue()
 					}));
@@ -165,7 +165,7 @@ private static void addUsersToGroups() {
 
 				{
 		
-					//email_gname==EmailAddress, grp)   gid_gname==(group.Name, group.Id)	multiEmail_GName==(EmailAddress,group_name)
+					//gid_gname==(group.Name, group.Id)	multiEmail_GName==(EmailAddress,group_name)
 					
 						//Loop Through gid_gname Hashmap
 					for(Map.Entry<String,String> entry2: gid_gname.entrySet())
@@ -195,6 +195,7 @@ private static void addUsersToGroups() {
 
 	private static void createGroups() {
 		
+		//List to 
 		ArrayList<Group> grpsToAdd = new ArrayList<Group>();
 		System.out.println("");
 
@@ -210,13 +211,9 @@ private static void addUsersToGroups() {
 		System.out.println("\tRetrieve Existing Groups in Cloud.");
 			 
 			cloudGroups = GroupsService.getGroups(companyGuid);
-			//Group[] all_groups = GroupsService.getGroups(companyGuid);
 			
 			System.out.println(String.format("\t[%s] of the Groups you Want to Create Already Exist", cloudGroups.length));
 
-			//if (cloudGroups != null || cloudGroups.length > 0 )
-			
-			
 			System.out.println("");
 		
 		//Load Groups from Active Directory as specified in Config File
@@ -228,7 +225,7 @@ private static void addUsersToGroups() {
 			
 			List<String> attr_frm_ad = new ArrayList<String>();			
 			
-			ADConnect_test adc = new ADConnect_test();
+			ADConnect adc = new ADConnect();
 			
 			attr_frm_ad = adc.getGroups(adc.createContext(url, usr, pas), search_base, search_fltr);	
 				
@@ -290,39 +287,25 @@ private static void addUsersToGroups() {
 	
 	 private static void createUsers()
 	  {
-	    //LdapContext ctx = null;
-	/*	 String uurl = ConfigurationHelper.getLdapUrl();
-		 //String uurl = "LDAP://137.69.206.203:389";
-			String uusr = ConfigurationHelper.getAdminCn();
-			//String uusr = "CN=Administrator,CN=Users,DC=support12r2,DC=com";
-			//String upas = ConfigurationHelper.getAdminPass();
-			String upas = "Admin1234";*/
-		
-		//String search_fltr = ConfigurationHelper.all_search_filters();
 
-		//String search_base = ConfigurationHelper.all_search_bases();
 		List<User> usersToAdd = new ArrayList<User>();
+		String track_usr = "";
 		try
 		{
-
 			String search_fltr = "(objectClass=user)";
-		
 			
-			ADConnect_test adc = new ADConnect_test();
+					
+			ADConnect adc = new ADConnect();
 
-			List<ADConnect_test.AdUser> attr_frm_ad = new ArrayList<ADConnect_test.AdUser>();
+			List<ADConnect.AdUser> attr_frm_ad = new ArrayList<ADConnect.AdUser>();
 			attr_frm_ad = adc.getUserData(adc.createContext(url, usr, pas), search_base, search_fltr);
-
 			
 			System.out.println("");
 
-			for(ADConnect_test.AdUser usr_frm_ad: attr_frm_ad)
+			for(ADConnect.AdUser usr_frm_ad: attr_frm_ad)
 			{
 				
 				User user = new User();
-				System.out.println(String.format(usr_frm_ad.getFirst()));
-			
-
 	         
 	          user.AccountType = UserAccountType.LimitedBusiness;	     
 	          user.Password = ConfigurationHelper.getSimplePassword();
@@ -330,15 +313,14 @@ private static void addUsersToGroups() {
 	          user.FirstName = usr_frm_ad.getFirst().toString().trim();
 	          user.LastName = usr_frm_ad.getLast().toString().trim();
 	          user.EmailAddress = usr_frm_ad.getMail().toString().trim();
-	          
-	          System.out.println("TTTEEESSSTTTIINNNGGG");
-	          System.out.println(String.format("\tUserEmail  [%s]", user.EmailAddress)); 
-	          System.out.println(String.format("\tFirstName  [%s]", user.FirstName)); 
-	          System.out.println(String.format("\tLastName  [%s]", user.FirstName)); 
-	          System.out.println("TTTEEESSSTTTIINNNGGG");
-	          
-	         
-	          System.out.println(String.format("\tTTTEEESSSTTTIINNNGGG  [%s]", usr_frm_ad.getGroup().toString()));
+	          track_usr = user.EmailAddress;
+	          System.out.println(String.format(usr_frm_ad.getFirst()));
+	          System.out.println(String.format("Details retrieved from active directory for user [%s]",user.EmailAddress));
+	          System.out.println(String.format("\tUserEmail:  [%s]", user.EmailAddress)); 
+	          System.out.println(String.format("\tFirstName:  [%s]", user.FirstName)); 
+	          System.out.println(String.format("\tLastName:  [%s]", user.FirstName)); 
+	          System.out.println(String.format("\tGroups user belongs to: [%s]", usr_frm_ad.getGroup().toString()));
+	          System.out.println("\t\t======================");
 
 	        
 	        	//create email_groupname combinations for all groups user belongs to in ad using the |separated field group list
@@ -350,7 +332,7 @@ private static void addUsersToGroups() {
 	  				{
 	  				
 	  					//multiEmail_GName.put(user.EmailAddress,group_name);
-	        		  System.out.println(String.format("\tFSFSFFS %S",group_name));
+
 	  					multiEmail_GName.put(user.EmailAddress,group_name);
 	  				} 
 	        	  
@@ -371,14 +353,15 @@ private static void addUsersToGroups() {
 				System.out.println("");
 				
 				if (checkUser != null) {
-					System.out.println(String.format("\tUser found. Cleanup of User  [%s].  Deleting user that may have been created from previous Sample App run.", new Object[] {
+					System.out.println(String.format("\tUser found i.e already exists in company. Cleanup of User  [%s].  Deleting user that may have been created from previous Sample App run.", new Object[] {
+					
 						user.EmailAddress
 					}));
 					try {
 						UsersService.deleteUser(user.EmailAddress);
 					} catch (Exception localException1) {}
 				} else {
-					System.out.println("\tNo user found in company, continuing successfully.");
+					System.out.println(String.format("\tUser [%s] does not already exist in company, continuing successfully.",user.EmailAddress));
 					
 	      }
 			}
@@ -407,22 +390,16 @@ private static void addUsersToGroups() {
 	        System.err.println(String.format("\tError Occured During Creating Some Of Users. Number of Created Users:%d", new Object[] { Integer.valueOf(addedCount) }));
 	      }
 	      else {
-	        //System.out.println(String.format("\tFinished Creation of User [%s] .", new Object[0]));
-	        System.out.println(String.format("\tFinished Creation of User ."));
+	        System.out.println(String.format("\tFinished creation of user [%s] .", track_usr ));
+
 	      }
 	    
-
-		for (Map.Entry<String, String> mm: multiEmail_GName.entries())
-		{
-			System.out.println(String.format("\tEmail: %s GroupPi: %s",mm.getKey(),mm.getValue()));
-			
-		}
 
 	System.out.println(String.format("Calling UsersService to add ==== %d ====users", new Object[] {
 		Integer.valueOf(usersToAdd.size())
 	}));
 
-	//System.out.println(String.format("CreatedUsers now has ****==== %d ====**** users", Integer.valueOf(createdUsers.length()));
+	System.out.println(String.format("CreatedUsers now has ****==== %d ====**** users", new Object[] {Integer.valueOf(createdUsers.length)}));
 	  }
 
 

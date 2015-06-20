@@ -110,7 +110,7 @@ public class EventLogListener
     			// WMI gives us events as SWbemObject instances (a base class of any WMI object). We know in our case we asked for a specific object
     			// type, so we will go ahead and invoke methods supported by that Win32_NTLogEvent class via the wbemEvent IDispatch pointer.
     			// In this case, we simply call the "GetObjectText_" method that returns us the entire object as a CIM formatted string. We could,
-    			// however, ask the object for its property values via wbemEvent.get("PropertyName"). See the j-interop documentation and examples
+    			// however, ask the object for its property values via wbemEvent.get("PropertyName"). See the j-interop documentation and provisioners
     			// for how to query COM properties.
     			JIVariant objTextAsVariant = (JIVariant) ( wbemEvent.callMethodA( "GetObjectText_", new Object[] { new Integer( 1 ) } ) )[ 0 ];
     			String asText = objTextAsVariant.getObjectAsString().getString();

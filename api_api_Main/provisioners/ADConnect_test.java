@@ -1,4 +1,4 @@
-package examples;
+package provisioners;
 
 //import java.util.HashMap;
 import java.util.ArrayList;
@@ -32,22 +32,19 @@ public class ADConnect_test {
 
 		String pas = ConfigurationHelper.getAdminPass();
 
-		String search_fltr = "(objectClass=user)";
+		String search_fltr = "(objectClass=group)";
 		
 		//String search_base = ConfigurationHelper.all_search_bases();
 		String search_base = "OU=SyncplicityUsers,DC=support12r2,DC=com";
 		
 		List<AdUser> attr_frm_ad = new ArrayList<AdUser>();
-
-		String grps_to_pass = null;
-		
 		
 		ADConnect_test adc = new ADConnect_test();
 
 		attr_frm_ad = adc.getUserData(adc.createContext(url, usr, pas), search_base, search_fltr);
 
 		
-		System.out.println("");
+		System.out.println("This is a test");
 
 		for(AdUser ad_group: attr_frm_ad)
 		{
