@@ -323,7 +323,7 @@ public class ADConnect {
 	public String ExtractGrp (String dn_string)
 	//public String[] ExtractGrp (String dn_string)
 	{
-		//List<String> dn_out_string = new ArrayList<String>();
+		//All groups user belongs to will be delimited by "|" and appended one-by-one to this string
 		String dn_out_string = "";
 		
 		try
@@ -348,7 +348,8 @@ public class ADConnect {
 
 	        	if (cn.get(i).toString().trim().startsWith("CN=") )
 	        	{
-
+	        		//Fish out the group string from the full dn of group e.g Group_Main from 
+	        		//"CN=Group_Main,OU=Izo,OU=Izogeek,DC=johnk,DC=local" and append "|" delimiter
 	            dn_out_string = dn_out_string +  cn.remove(i).toString().split("\\=")[1]+ "|" ;
 	            
 	        	}	        	
@@ -399,5 +400,6 @@ public class ADConnect {
 	    }
 	}
 	
+
 }
 	
