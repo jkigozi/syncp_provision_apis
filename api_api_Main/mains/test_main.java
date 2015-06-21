@@ -77,6 +77,7 @@ public class test_main {
 	    for (Map.Entry<String, Integer> entry : mp.entrySet()) {
 	        System.out.println(entry.getKey() + " ocurrs " + entry.getValue()+ " times");
 	        System.out.println("Test GiT 1");
+	        System.out.println("Test GiT 2");
 	    }
 	}
 	
