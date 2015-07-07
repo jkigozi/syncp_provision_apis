@@ -78,6 +78,7 @@ public class test_main {
 	        System.out.println(entry.getKey() + " ocurrs " + entry.getValue()+ " times");
 	        System.out.println("Test GiT 1");
 	        System.out.println("Test GiT 3");
+	        System.out.println("Test GiT 3");
 	    }
 	}
 	

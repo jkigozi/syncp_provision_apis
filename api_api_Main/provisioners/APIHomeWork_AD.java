@@ -216,7 +216,7 @@ private static void addUsersToGroups() {
 
 			System.out.println("");
 		
-		//Load Groups from Active Directory as specified in Config File
+		//Load Groups from Active Directory
 			
 			try
 			{
@@ -230,7 +230,7 @@ private static void addUsersToGroups() {
 			attr_frm_ad = adc.getGroups(adc.createContext(url, usr, pas), search_base, search_fltr);	
 				
 				
-			//Loop Through List of Groups Retrieved from AD to Create them in Syncplicity
+			//Loop Through List of Groups Retrieved from AD to Create in Syncplicity
 				for(String ad_group: attr_frm_ad)
 				{
 					System.out.println(String.format(ad_group));
@@ -249,7 +249,7 @@ private static void addUsersToGroups() {
 
 							gid_gname.put(group.Name, grp.Id);
 						}
-								//Update GroupName-GroupID Tracking Array
+								//Update GroupName-GroupID Tracking Hashmap
 
 							gid_gname.put(group.Name, group.Id);
 
