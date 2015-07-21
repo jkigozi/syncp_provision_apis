@@ -6,7 +6,6 @@
 	<classpathentry kind="lib" path="libs/gson-2.3.1.jar"/>
 	<classpathentry kind="lib" path="/Users/kigozj/Documents/eclipse/workspace/api_api/libs/guava-18.0.jar"/>
 	<classpathentry kind="lib" path="/Users/kigozj/Documents/eclipse/workspace/api_api/guava-libraries-1c5554dedb09 2"/>
-	<classpathentry kind="lib" path="/Users/kigozj/Downloads/apache-log4j-1.2.17"/>
 	<classpathentry kind="lib" path="/Users/kigozj/Documents/eclipse/workspace/api_api/j-interop"/>
 	<classpathentry kind="lib" path="/Users/kigozj/Documents/eclipse/workspace/api_api/j-interop/lib/j-interop.jar"/>
 	<classpathentry kind="lib" path="libs/ldapbp-repackaged-4.0.jar"/>

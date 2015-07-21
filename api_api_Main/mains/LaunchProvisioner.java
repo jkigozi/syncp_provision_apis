@@ -71,9 +71,9 @@ public class LaunchProvisioner
       System.out.println("Authentication was successful.");
     }
 
-    //APIHomeWork_F.execute();
-    APIHomeWork_AD.execute();
-    //ProvisioningExampleAdMain.execute();
+    APIHomeWork_F.execute();
+    //APIHomeWork_AD.execute();
+
     
 
 

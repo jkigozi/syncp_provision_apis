@@ -2,7 +2,6 @@ package provisioners;
 
 /**
  * delchanges.java
- * December 2004
  * Sample JNDI application to perform a DirSync search against AD
  * Use both DirSync & Deletion controls to detect deleted objects
  * https://community.oracle.com/thread/1157474?tstart=0
@@ -17,7 +16,8 @@ import com.sun.jndi.ldap.ctl.*;
 import com.sun.jndi.ldap.ctl.DirSyncControl.*;
 import com.sun.jndi.ldap.ctl.DirSyncResponseControl.*;
 
-class deletedControl implements Control {
+
+class delchanges  {
      public byte[] getEncodedValue() {
           return new byte[] {};
      }
@@ -29,12 +29,13 @@ class deletedControl implements Control {
      }
 }
 
-public class delchanges     {
+public class deletedControl    {
+
      public static void main (String[] args)     {
-          Hashtable env = new Hashtable();
-          String adminName = "CN=Administrator,CN=Users,DC=ANTIPODES,DC=COM";
+          Hashtable<String,String> env = new Hashtable<String,String>();
+          String adminName = "CN=Administrator,CN=Users,DC=johnk,DC=local";
           String adminPassword = "XXXXXXX";
-          String ldapURL = "ldap://mydc.antipodes.com:389";
+          String ldapURL = "LDAP://win2k8-R2.johnk.local:389";
           env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
           //set security credentials, note using simple cleartext authentication
           env.put(Context.SECURITY_AUTHENTICATION,"simple");
@@ -64,7 +65,7 @@ public class delchanges     {
                String searchFilter = "(&(objectClass=user)(isDeleted=TRUE))";
 
                //Specify the Base for the search
-               String searchBase = "DC=antipodes,DC=com";
+               String searchBase = "DC=johnk,DC=local";
 
                //initialize counter to total the results
                int totalResults = 0;
@@ -80,7 +81,7 @@ public class delchanges     {
                ctx.setRequestControls(ctls);
 
                // Search for objects using the filter
-               NamingEnumeration answer = ctx.search(searchBase, searchFilter, searchCtls);
+               NamingEnumeration<SearchResult> answer = ctx.search(searchBase, searchFilter, searchCtls);
 
                //Loop through the search results
                while (answer.hasMoreElements()) {
@@ -99,7 +100,7 @@ public class delchanges     {
                     System.out.println("Response Controls: " + rspCtls.length);
                     for (int i=0; i < rspCtls.length;i++) {
                          if (rspCtls[i] instanceof DirSyncResponseControl) {
-                              DirSyncResponseControl rspCtl = (DirSyncResponseControl)rspCtls;
+                              DirSyncResponseControl rspCtl = (DirSyncResponseControl)rspCtls[i];
 
                               cookie = rspCtl.getCookie();
 

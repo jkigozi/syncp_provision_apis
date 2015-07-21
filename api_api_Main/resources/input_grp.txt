@@ -1,6 +1,7 @@
-Group_Main:syncplicity-api-training-06-apidev@dispostable.com
-Group_Real:syncplicity-api-training-06-apidev@dispostable.com
-Group_Next:syncplicity-api-training-06-apidev@dispostable.com
-Group_Many:syncplicity-api-training-06-apidev@dispostable.com
-Group_Tech:syncplicity-api-training-06-apidev@dispostable.com
-Group_Geek:syncplicity-api-training-06-apidev@dispostable.com
+Group_Main:john-kigozi@dispostable.com
+Group_Real:john-kigozi@dispostable.com
+Group_Next:john-kigozi@dispostable.com
+Group_Many:john-kigozi@dispostable.com
+Group_Tech:john-kigozi@dispostable.com
+Group_Geek:john-kigozi@dispostable.com
+Group_XXYY:john-kigozi@dispostable.com

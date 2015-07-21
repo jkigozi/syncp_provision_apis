@@ -8,3 +8,4 @@ firstgg_lastgg@apidev.com:firstgg:lastee:passb7:LimitedBusiness:Group_Real|Group
 firsthh_lasthh@apidev.com:firsthh:lasthh:passb8:LimitedBusiness:Group_Main|Group_Many
 firstii_lastii@apidev.com:firstii:lastii:passb9:LimitedBusiness:Group_Main|Group_Real
 firstjj_lastjj@apidev.com:firstjj:lastjj:passb10:LimitedBusiness:Group_Main|Group_Many|Group_Real|Group_Next|
+firstxx_lastyy@apidev.com:firstxx:lastyy:passb11:LimitedBusiness:Group_Main|Group_Many|Group_Real|Group_XXYY|

@@ -1,6 +1,6 @@
 package provisioners;
 
-//Retrieve any newly modified object and dsiplay the changed attributes
+//Retrieve any newly modified object and display the changed attributes
 
 
 import java.io.*;
@@ -17,6 +17,14 @@ import com.sun.jndi.ldap.ctl.DirSyncControl.*;
 import com.sun.jndi.ldap.ctl.DirSyncResponseControl.*;
 import com.sun.jndi.ldap.ctl.DirSyncResponseControl;
 
+// HehHHHHHAttribute: isDeleted			TRUE
+// HehHHHHHAttribute: accountExpires	9223372036854775807
+// HehHHHHHAttribute: whenCreated		20150707230528.0Z
+// givenName, sn, mail,
+//Attribute for enable/disable user is useraccountcontrol 512=Enabled
+//514= Disabled
+//66048 = Enabled, password never expires
+//66050 = Disabled, password never expires
 
 
 public class GetAdChanges     {
@@ -44,6 +52,7 @@ public class GetAdChanges     {
           
                //Specify the attributes to return, null initially return all values     
                //and in subsequent calls, null returns all modified attributes
+               //String returnedAtts[]={"givenName","sn","mail","userAccountControl"};
                String returnedAtts[]={};
                searchCtls.setReturningAttributes(returnedAtts);
           
@@ -74,7 +83,7 @@ public class GetAdChanges     {
 
                     totalResults++;
 
-                    System.out.println(">>>" + sr.getName());
+                    //System.out.println(">>>" + sr.getName());
 
                     //First time around, no need to print any attributes 
           
@@ -179,6 +188,7 @@ public class GetAdChanges     {
 
 
                          System.out.println(">>>" + sr.getName());
+                         //System.out.println(">>>" + sr.getAttributes());
 
 
 
@@ -197,12 +207,20 @@ public class GetAdChanges     {
                                    for (NamingEnumeration ae = attrs.getAll();ae.hasMore();) {
 
                                         Attribute attr = (Attribute)ae.next();
-
-                                        System.out.println("HehHHHHHAttribute: " + attr.getID());
+                                        try
+                                        {
+                                        	if (attr.getID().equals("TRUE"))
+                                        	
+                                        if (attr != null && attr.get().toString().trim() != null && !attr.get().toString().trim().isEmpty() && !attr.get().toString().trim().equals("") )
+                                        {
+                                        	System.out.println("HehHHHHHAttribute: " + attr.getID());
+                                        	System.out.println("HehHHHHHAttribute: " + attr.get().toString().trim());
 
                                         for (NamingEnumeration e = attr.getAll();e.hasMore();System.out.println(" " + e.next().toString()));
-
-
+                                        }
+                                        } catch (NullPointerException ne) {
+                                        	System.err.println();
+                                        }
 
                                    }
 
@@ -212,14 +230,8 @@ public class GetAdChanges     {
 
                                    System.err.println();
 
-                              }
-
-                    
-
+                              }                  
                          }
-
-
-
                     }
 
 
@@ -249,16 +261,9 @@ public class GetAdChanges     {
                                    System.out.println("Cookie: " + cookie.toString());
 
                               }
-
                          }
-
                     }
-
-          
-
                }
-
-
 
           } 
 

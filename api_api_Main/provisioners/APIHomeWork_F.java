@@ -236,6 +236,8 @@ private static void addUsersToGroups() {
 
 			System.out.println("Creating Groups..........");
 			
+			//System.out.println(String.format("\tOwner EMAIL is [%s]"));
+			
 			//Convert Temp List to Array of Group and Call API to Create Groups
 			createdGroups = GroupsService.createGroups(companyGuid, grpsToAdd.toArray(new Group[grpsToAdd.size()]));
 			
@@ -267,6 +269,7 @@ private static void addUsersToGroups() {
 		System.out.println("Start Users Creation...");
 
 		File fil = new File(ConfigurationHelper.getUsr_infil());
+		//File fil = new File("/Users/kigozj/git/syncp_provision_apis/api_api_Main/resources/input_file.txt");
 
 		BufferedReader br = null;
 		
@@ -277,16 +280,17 @@ private static void addUsersToGroups() {
 			br = new BufferedReader(fr);
 			String line;
 			while ((line = br.readLine()) != null) {
+				System.out.println("LINEEEEEEEE");
 			
 				User user = new User();
 
-				user.EmailAddress = line.split(":")[0].trim();
+				user.EmailAddress = line.toString().split(":")[0].trim();
 
-				user.FirstName = line.split(":")[1].trim();
-				user.LastName = line.split(":")[2].trim();
-				user.Password = line.split(":")[3].trim();
+				user.FirstName = line.toString().split(":")[1].trim();
+				user.LastName = line.toString().split(":")[2].trim();
+				user.Password = line.toString().split(":")[3].trim();
 
-				user.AccountType = UserAccountType.valueOf(line.split(":")[4].trim());
+				user.AccountType = UserAccountType.valueOf(line.toString().split(":")[4].trim());
 
 				String grp = line.toString().split(":")[5].trim();
 				email_gname.put(user.EmailAddress, grp);

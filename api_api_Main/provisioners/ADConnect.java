@@ -154,7 +154,7 @@ public class ADConnect {
 			StringBuffer groupsSearchFilter = new StringBuffer();
 			groupsSearchFilter.append("(|");
 			
-
+			//Specify the attributes to return
 			String[] returnedAtts={"cn","mail","memberOf","sAMAccountName"};
 			
 			searchCtrls.setReturningAttributes(returnedAtts);
